@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lotería de Recuerdos | Santa Gloria Velatorios</title>
+    <meta name="description" content="Este Día de Muertos crea una lotería digital con la foto de tu ser querido y todas las versiones que recuerdas de esa persona. Santa Gloria Velatorios.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+</head>
+<body>
+    <main class="hero" id="home">
+        <img class="papel papel--izq" src="{{ asset('img/papel-izq.webp') }}" alt="" aria-hidden="true">
+        <img class="papel papel--der" src="{{ asset('img/papel-der.webp') }}" alt="" aria-hidden="true">
+        <img class="flor flor--izq" src="{{ asset('img/flor.webp') }}" alt="" aria-hidden="true">
+        <img class="flor flor--der" src="{{ asset('img/flor.webp') }}" alt="" aria-hidden="true">
+
+        <div class="hero__content">
+            <img class="hero__logo" src="{{ asset('img/logo-santa-gloria.webp') }}" alt="Santa Gloria Velatorios – Grupo Funerario J. García López">
+
+            <h1 class="hero__title">
+                <img src="{{ asset('img/titulo-loteria.webp') }}" alt="Lotería de Recuerdos">
+            </h1>
+
+            <div class="hero__text">
+                <p>Día de Muertos no es solo el día en que recordamos a alguien; es el momento en que reunimos todas las versiones que esa persona dejó en quienes la conocieron.</p>
+                <p>Hoy puedes honrar su historia. Crea una lotería digital inspirada en todas las versiones que recuerdas de esa persona.</p>
+                <p>Imprímela y juega en familia o juégala en digital aquí mismo.</p>
+            </div>
+
+            <a href="{{ route('loteria.create') }}" class="btn-start" id="btn-comienza">Comienza aquí</a>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,327 @@
+/* ======================================================
+   VISTA DE GRACIAS | LOTERÍA DE RECUERDOS
+   Santa Gloria Velatorios
+   ====================================================== */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --purple: #5b2179;
+    --purple-deep: #471960;
+    --teal: #5fb3b0;
+    --teal-hover: #6ec8c5;
+    --cream: #f4ead2;
+    --white: #ffffff;
+}
+
+html, body {
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--white);
+    background: var(--purple) url('../img/fondo.webp') center / cover no-repeat fixed;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Decoraciones florales en esquinas */
+.flor-decor {
+    position: fixed;
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+    filter: drop-shadow(0 8px 20px rgba(20, 0, 35, .4));
+}
+
+.flor-decor--top-der {
+    top: -1.5vw;
+    right: -1.5vw;
+    width: clamp(120px, 16vw, 220px);
+    transform: rotate(6deg);
+    animation: swayTop 7s ease-in-out infinite alternate;
+}
+
+.flor-decor--bot-izq {
+    bottom: -1.5vw;
+    left: -1.5vw;
+    width: clamp(100px, 13vw, 180px);
+    transform: rotate(-4deg);
+    animation: swayBot 7s ease-in-out infinite alternate 1s;
+}
+
+/* Contenedor principal */
+.gracias-page {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: clamp(2rem, 4vw, 3.5rem) clamp(1.25rem, 3.5vw, 2.5rem) clamp(1.5rem, 2.5vw, 2.25rem);
+    text-align: center;
+}
+
+.gracias-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 820px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Ícono de paloma Santa Gloria */
+.gracias__dove {
+    width: clamp(40px, 4.2vw, 52px);
+    height: auto;
+    margin-bottom: clamp(0.5rem, 1.2vw, 0.9rem);
+    filter: drop-shadow(0 3px 8px rgba(0, 0, 0, .25));
+    animation: fadeInDown .8s ease both;
+}
+
+/* Título de Lotería */
+.gracias__logo {
+    display: block;
+    line-height: 0;
+    margin-bottom: clamp(1.25rem, 2.2vw, 1.85rem);
+}
+
+.gracias__logo img {
+    width: clamp(260px, 32vw, 420px);
+    height: auto;
+    filter: drop-shadow(0 10px 26px rgba(20, 0, 35, .45));
+    animation: popIn 1s cubic-bezier(.2, 1.4, .4, 1) both .15s, float 5.5s ease-in-out infinite 1.2s;
+}
+
+/* Título principal */
+.gracias__title {
+    font-size: clamp(1.15rem, 1.65vw, 1.45rem);
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--white);
+    max-width: 720px;
+    margin: 0 auto clamp(0.9rem, 1.5vw, 1.35rem);
+    text-shadow: 0 2px 10px rgba(20, 0, 35, .4);
+    animation: fadeInUp .85s ease both .25s;
+}
+
+/* Párrafo descriptivo */
+.gracias__description {
+    font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--white);
+    max-width: 730px;
+    margin: 0 auto clamp(1rem, 1.8vw, 1.45rem);
+    text-shadow: 0 2px 8px rgba(20, 0, 35, .35);
+    animation: fadeInUp .85s ease both .35s;
+}
+
+/* Bloque de redes sociales */
+.gracias__social {
+    font-size: clamp(0.88rem, 0.98vw, 0.98rem);
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--white);
+    margin: 0 auto clamp(1.35rem, 2.2vw, 1.85rem);
+    text-shadow: 0 2px 8px rgba(20, 0, 35, .35);
+    animation: fadeInUp .85s ease both .45s;
+}
+
+.gracias__social-label {
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+}
+
+.gracias__social-item {
+    margin-top: 0.1rem;
+}
+
+.gracias__social-item a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity .2s ease;
+}
+
+.gracias__social-item a:hover {
+    opacity: .85;
+    text-decoration: underline;
+}
+
+/* Botones de acción */
+.gracias__actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.75rem, 1.8vw, 1.5rem);
+    width: 100%;
+    margin-top: 0.25rem;
+    animation: fadeInUp .85s ease both .55s;
+}
+
+.btn-loteria {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: clamp(130px, 12vw, 155px);
+    padding: clamp(0.45rem, 0.7vw, 0.6rem) clamp(1.4rem, 2vw, 2rem);
+    font-family: inherit;
+    font-size: clamp(1rem, 1.08vw, 1.15rem);
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: none;
+    background: var(--teal);
+    border: 3.5px solid var(--white);
+    border-radius: 4px;
+    box-shadow: 0 4px 14px rgba(20, 0, 35, .28);
+    cursor: pointer;
+    transition: transform .25s cubic-bezier(.2, .8, .2, 1), box-shadow .25s ease, background .25s ease;
+    user-select: none;
+}
+
+.btn-loteria:hover,
+.btn-loteria:focus-visible {
+    background: var(--teal-hover);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 22px rgba(20, 0, 35, .4);
+    outline: none;
+}
+
+.btn-loteria:active {
+    transform: translateY(0) scale(0.99);
+}
+
+/* Nota aclaratoria al pie */
+.gracias__footnote {
+    font-size: clamp(0.68rem, 0.8vw, 0.82rem);
+    font-weight: 500;
+    color: rgba(255, 255, 255, .72);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+    max-width: 900px;
+    line-height: 1.45;
+    animation: fadeIn .9s ease both .65s;
+}
+
+/* Animaciones */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+}
+
+@keyframes swayTop {
+    0% { transform: rotate(5deg) scale(1); }
+    100% { transform: rotate(8deg) scale(1.03); }
+}
+
+@keyframes swayBot {
+    0% { transform: rotate(-5deg) scale(1); }
+    100% { transform: rotate(-2deg) scale(1.03); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .gracias-page {
+        padding: 1.75rem 1.15rem 1.5rem;
+    }
+
+    .flor-decor--top-der {
+        top: -10px;
+        right: -10px;
+        width: clamp(80px, 24vw, 120px);
+        opacity: 0.9;
+    }
+
+    .flor-decor--bot-izq {
+        bottom: -10px;
+        left: -10px;
+        width: clamp(70px, 20vw, 100px);
+        opacity: 0.9;
+    }
+
+    .gracias__logo img {
+        width: clamp(230px, 72vw, 340px);
+    }
+
+    .gracias__actions {
+        flex-direction: row;
+        gap: 0.75rem;
+    }
+
+    .btn-loteria {
+        flex: 1;
+        max-width: 160px;
+        min-width: 120px;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.95rem;
+    }
+
+    .gracias__footnote {
+        font-size: 0.7rem;
+        margin-top: 1.25rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .gracias__actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.65rem;
+    }
+
+    .btn-loteria {
+        width: 100%;
+        max-width: 220px;
+    }
+}
