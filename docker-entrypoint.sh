@@ -1,39 +1,34 @@
 #!/bin/bash
-set -e
 
-PORT=${PORT:-80}
-
-# Adaptar puerto para Render (inyecta automáticamente $PORT)
-sed -i "s/Listen 80/Listen ${PORT}/" /etc/apache2/ports.conf
-sed -i "s/<VirtualHost \*:80>/<VirtualHost \*:${PORT}>/" /etc/apache2/sites-available/000-default.conf
-
-# Asegurar que exista .env
-if [ ! -f .env ]; then
-    cp .env.example .env
+# Asegurar archivo .env
+if [ ! -f /var/www/html/.env ]; then
+    cp /var/www/html/.env.example /var/www/html/.env
 fi
 
-# Generar APP_KEY si aún no tiene una
-if [ -z "$APP_KEY" ] && ! grep -q "^APP_KEY=base64:" .env; then
-    echo "Generando APP_KEY..."
+# Asegurar APP_KEY si no existe
+if [ -z "$APP_KEY" ]; then
     php artisan key:generate --force || true
 fi
 
-# Asegurar archivo y permisos de SQLite
-touch database/database.sqlite
-chown -R www-data:www-data database storage bootstrap/cache .env
-chmod -R 775 database storage bootstrap/cache
-chmod 664 .env
+# Permisos para SQLite y almacenamiento
+touch /var/www/html/database/database.sqlite
+chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database /var/www/html/.env || true
+chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database /var/www/html/.env || true
 
-# Crear enlace simbólico de almacenamiento
+# Enlace de almacenamiento y migraciones
 php artisan storage:link || true
-
-# Ejecutar migraciones
 php artisan migrate --force || true
 
-# Limpiar cachés para que tome la configuración fresca
+# Limpieza de caché
 php artisan config:clear || true
 php artisan route:clear || true
 php artisan view:clear || true
 
-echo "Servidor listo en el puerto ${PORT}..."
+# Configurar puerto dinámico de Render si viene especificado
+if [ -n "$PORT" ]; then
+    echo "Agregando escucha en puerto $PORT..."
+    echo "Listen $PORT" >> /etc/apache2/ports.conf
+fi
+
+echo "Iniciando Apache en primer plano..."
 exec apache2-foreground

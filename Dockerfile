@@ -19,11 +19,21 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-# Configurar Apache document root apuntando a /public
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+# Configuración de Apache para Laravel y múltiples puertos (80, 10000, 8080)
 RUN a2enmod rewrite
+
+RUN echo "Listen 80\nListen 10000\nListen 8080" > /etc/apache2/ports.conf
+
+RUN echo '<VirtualHost *:*>\n\
+    DocumentRoot /var/www/html/public\n\
+    <Directory /var/www/html/public>\n\
+        Options -Indexes +FollowSymLinks\n\
+        AllowOverride All\n\
+        Require all granted\n\
+    </Directory>\n\
+    ErrorLog ${APACHE_LOG_DIR}/error.log\n\
+    CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
+</VirtualHost>' > /etc/apache2/sites-available/000-default.conf
 
 # Copiar dependencias de Composer primero (optimiza caché)
 COPY composer.json composer.lock ./
@@ -38,16 +48,15 @@ RUN cp .env.example .env && php artisan key:generate --force
 # Finalizar autoload optimizado
 RUN composer dump-autoload --optimize
 
-# Permisos para storage, cache y sqlite
+# Permisos
 RUN touch database/database.sqlite \
-    && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database /var/www/html/.env \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database \
-    && chmod 664 /var/www/html/.env
+    && chmod -R 777 storage bootstrap/cache database .env \
+    && chown -R www-data:www-data storage bootstrap/cache database .env
 
 # Script de arranque
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-EXPOSE 80 10000
+EXPOSE 80 10000 8080
 
 ENTRYPOINT ["docker-entrypoint.sh"]
