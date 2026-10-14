@@ -8,20 +8,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+    <link rel="stylesheet" href="/css/landing.css">
 </head>
 <body>
     <main class="hero" id="home">
-        <img class="papel papel--izq" src="{{ asset('img/papel-izq.webp') }}" alt="" aria-hidden="true">
-        <img class="papel papel--der" src="{{ asset('img/papel-der.webp') }}" alt="" aria-hidden="true">
-        <img class="flor flor--izq" src="{{ asset('img/flor.webp') }}" alt="" aria-hidden="true">
-        <img class="flor flor--der" src="{{ asset('img/flor.webp') }}" alt="" aria-hidden="true">
+        <img class="papel papel--izq" src="/img/papel-izq.webp" alt="" aria-hidden="true">
+        <img class="papel papel--der" src="/img/papel-der.webp" alt="" aria-hidden="true">
+        <img class="flor flor--izq" src="/img/flor.webp" alt="" aria-hidden="true">
+        <img class="flor flor--der" src="/img/flor.webp" alt="" aria-hidden="true">
 
         <div class="hero__content">
-            <img class="hero__logo" src="{{ asset('img/logo-santa-gloria.webp') }}" alt="Santa Gloria Velatorios – Grupo Funerario J. García López">
+            <img class="hero__logo" src="/img/logo-santa-gloria.webp" alt="Santa Gloria Velatorios – Grupo Funerario J. García López">
 
             <h1 class="hero__title">
-                <img src="{{ asset('img/titulo-loteria.webp') }}" alt="Lotería de Recuerdos">
+                <img src="/img/titulo-loteria.webp" alt="Lotería de Recuerdos">
             </h1>
 
             <div class="hero__text">

@@ -8,17 +8,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/crear.css') }}">
+    <link rel="stylesheet" href="/css/landing.css">
+    <link rel="stylesheet" href="/css/crear.css">
 </head>
 <body>
 <main class="wizard-page">
-    <img class="flor flor--top-der" src="{{ asset('img/flor.webp') }}" alt="" aria-hidden="true">
-    <img class="flor flor--bot-izq" src="{{ asset('img/flor-2.webp') }}" alt="" aria-hidden="true">
+    <img class="flor flor--top-der" src="/img/flor.webp" alt="" aria-hidden="true">
+    <img class="flor flor--bot-izq" src="/img/flor-2.webp" alt="" aria-hidden="true">
 
     <header class="wz-header">
         <a href="{{ route('home') }}" aria-label="Inicio">
-            <img class="wz-logo" src="{{ asset('img/logo-santa-gloria.webp') }}" alt="Santa Gloria Velatorios">
+            <img class="wz-logo" src="/img/logo-santa-gloria.webp" alt="Santa Gloria Velatorios">
         </a>
         <h1 class="sr-only">Crea tu Lotería de Recuerdos</h1>
         
@@ -146,7 +146,7 @@
             </section>
 
             <aside class="wz-preview" aria-hidden="true">
-                <img src="{{ asset('img/cartas.webp') }}" alt="Cartas de ejemplo">
+                <img src="/img/cartas.webp" alt="Cartas de ejemplo">
             </aside>
         </div>
 

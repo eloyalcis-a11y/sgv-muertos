@@ -8,21 +8,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/gracias.css') }}">
+    <link rel="stylesheet" href="/css/gracias.css">
 </head>
 <body>
     {{-- Flores decorativas en esquinas --}}
-    <img class="flor-decor flor-decor--top-der" src="{{ asset('img/flor.webp') }}" alt="" aria-hidden="true">
-    <img class="flor-decor flor-decor--bot-izq" src="{{ asset('img/flor-2.webp') }}" alt="" aria-hidden="true">
+    <img class="flor-decor flor-decor--top-der" src="/img/flor.webp" alt="" aria-hidden="true">
+    <img class="flor-decor flor-decor--bot-izq" src="/img/flor-2.webp" alt="" aria-hidden="true">
 
     <main class="gracias-page">
         <div class="gracias-center">
             {{-- Ícono Santa Gloria (Paloma) --}}
-            <img class="gracias__dove" src="{{ asset('img/icono-paloma.webp') }}" alt="Santa Gloria Velatorios">
+            <img class="gracias__dove" src="/img/icono-paloma.webp" alt="Santa Gloria Velatorios">
 
             {{-- Título gráfico Lotería de Recuerdos --}}
             <div class="gracias__logo">
-                <img src="{{ asset('img/titulo-loteria.webp') }}" alt="Lotería de Recuerdos">
+                <img src="/img/titulo-loteria.webp" alt="Lotería de Recuerdos">
             </div>
 
             {{-- Mensaje de agradecimiento --}}
