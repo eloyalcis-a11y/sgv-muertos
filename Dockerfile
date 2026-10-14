@@ -32,13 +32,17 @@ RUN composer install --no-dev --no-interaction --no-scripts --prefer-dist
 # Copiar el resto del código
 COPY . .
 
+# Crear .env base a partir de .env.example
+RUN cp .env.example .env && php artisan key:generate --force
+
 # Finalizar autoload optimizado
 RUN composer dump-autoload --optimize
 
 # Permisos para storage, cache y sqlite
 RUN touch database/database.sqlite \
-    && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
+    && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database /var/www/html/.env \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database \
+    && chmod 664 /var/www/html/.env
 
 # Script de arranque
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
